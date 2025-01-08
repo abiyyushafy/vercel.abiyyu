@@ -6,15 +6,15 @@ app = Flask(__name__, template_folder='templates')
 def home():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/Login')
 def login():
     return render_template('Login.html')
 
-@app.route('/produk')
+@app.route('/Produk')
 def produk():
     return render_template('Produk.html')
 
-@app.route('/register')
+@app.route('/Register')
 def register():
     return render_template('Register.html')
 
