@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenis Produk - Tokoku</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: none;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        [data-bs-theme="dark"] {
+            background-color: #212529;
+            color: #fff;
+        }
+
+        [data-bs-theme="dark"] .bg-light {
+            background-color: #ffffff !important;
+        }
+
+        [data-bs-theme="dark"] .navbar-light {
+            background-color: #343a40 !important;
+        }
+
+        [data-bs-theme="dark"] .navbar-light .navbar-brand,
+        [data-bs-theme="dark"] .navbar-light .nav-link {
+            color: #ffffff;
+        }
+
+        [data-bs-theme="dark"] .card {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #6c757d;
+            background: transparent;
+            color: #6c757d;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #6c757d;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        [data-bs-theme="dark"] .theme-toggle {
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        [data-bs-theme="dark"] .theme-toggle:hover {
+            background-color: #fff;
+            color: #212529;
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        .toggle-text {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 0.9rem;
+        }
+
+        .promo-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #f8f9fa;
+            padding: 20px 0;
+        }
+
+        [data-bs-theme="dark"] .promo-container {
+            background: #343a40;
+        }
+
+        .promo-wrapper {
+            display: flex;
+            position: relative;
+            animation: slideLeft 20s linear infinite;
+        }
+
+        .promo-item {
+            flex: 0 0 300px;
+            margin-right: 30px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes slideLeft {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+
+        .promo-container:hover .promo-wrapper {
+            animation-play-state: running;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .theme-toggle-wrapper {
+                margin: 1rem 0;
+            }
+
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .theme-toggle {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .navbar {
+                padding: 0.5rem;
+            }
+
+            .theme-toggle {
+                padding: 6px 10px;
+            }
+
+            .theme-toggle i {
+                font-size: 1rem;
+            }
+
+            .card-img-top {
+                height: 150px;
+            }
+
+            .hero-section {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+        }
+        /* Product Styles */
+        body {
+            margin-top: 0px;
+            background-color: #f8f9fa;
+            padding-top: 0px; /* Offset for fixed navbar */
+            ;
+        }
+
+        .product-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            border-radius: 0.5rem;
+        }
+
+        .product-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            background-color: #e3f2fd;
+            cursor: pointer;
+        }
+
+        .product-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .product-name {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+
+        .main-container {
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Tokoku</a>
+            <div class="d-flex align-items-center">
+                <button class="theme-toggle ms-2" onclick="toggleTheme()">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                    <span class="toggle-text" id="toggleText">Mode Terang</span>
+                </button>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Produk.html">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary nav-link text-grey" href="Register.html">Daftar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="container main-container" style="margin-top: 50px; ">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="text-center mb-4">Jenis Produk</h1>
+                <div class="list-group">
+                    <a href="index.html" class="list-group-item list-group-item-action product-item p-3 mb-3 border-0">
+                        <div class="d-flex align-items-center">
+                            <img src="https://play-lh.googleusercontent.com/wRXSrwwbzBBlTpowK6onSs3rfBV-4nqVvLJJ7yAZa7jzdGNHpHH2hDhKCyKWj_3nqw" 
+                                 alt="Mobile Legends" 
+                                 class="product-icon me-3">
+                            <div>
+                                <div class="product-name">Mobile Legends</div>
+                                <div class="product-description">Game MOBA yang sangat populer di Indonesia. Mainkan bersama teman-teman dalam pertarungan 5v5!</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="index.html" class="list-group-item list-group-item-action product-item p-3 mb-3 border-0">
+                        <div class="d-flex align-items-center">
+                            <img src="https://th.bing.com/th/id/OIP.O-GOqdj9gL4e4AkXfaQjKgHaHd?rs=1&pid=ImgDetMain" 
+                                 alt="Free Fire" 
+                                 class="product-icon me-3">
+                            <div>
+                                <div class="product-name">Free Fire</div>
+                                <div class="product-description">Battle Royale yang cepat dengan gameplay dinamis dan seru. Bertahan hidup hingga akhir!</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="index.html" class="list-group-item list-group-item-action product-item p-3 mb-3 border-0">
+                        <div class="d-flex align-items-center">
+                            <img src="https://th.bing.com/th/id/OIP.JzdWfLB0wl6my6aK3uUd8QHaNK?w=115&h=180&c=7&r=0&o=5&pid=1.7" 
+                                 alt="PUBG Mobile" 
+                                 class="product-icon me-3">
+                            <div>
+                                <div class="product-name">PUBG Mobile</div>
+                                <div class="product-description">Game Battle Royale yang menawarkan pengalaman bertahan hidup yang realistis dan intens.</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="index.html" class="list-group-item list-group-item-action product-item p-3 mb-3 border-0">
+                        <div class="d-flex align-items-center">
+                            <img src="https://th.bing.com/th/id/OIP.rbZQ89biO3VeZkAoD5sUKwAAAA?w=182&h=183&c=7&r=0&o=5&pid=1.7" 
+                                 alt="Valorant" 
+                                 class="product-icon me-3">
+                            <div>
+                                <div class="product-name">Valorant</div>
+                                <div class="product-description">Game FPS dengan berbagai karakter unik dan gameplay yang menantang. Taktik dan strategi adalah kunci kemenangan!</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">&copy; 2024 Tokoku. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const toggleText = document.getElementById('toggleText');
+            const currentTheme = html.getAttribute('data-bs-theme');
+
+            if (currentTheme === 'light') {
+                html.setAttribute('data-bs-theme', 'dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                toggleText.textContent = 'Mode Gelap';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-bs-theme', 'light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                toggleText.textContent = 'Mode Terang';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeIcon = document.getElementById('themeIcon');
+            const toggleText = document.getElementById('toggleText');
+
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                toggleText.textContent = 'Mode Gelap';
+            }
+        });
+    </script>
+</body>
+</html>
